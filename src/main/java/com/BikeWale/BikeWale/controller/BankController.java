@@ -7,34 +7,38 @@ import com.BikeWale.BikeWale.entity.ApiResponse;
 import com.BikeWale.BikeWale.entity.Bank;
 import com.BikeWale.BikeWale.service.BankService;
 
-
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/bank")
+@Tag(name = "Bank APIs", description = "Operations related to banks")
 public class BankController {
 
-    @Autowired
-    private BankService service;
+	@Autowired
+	private BankService service;
 
-    @PostMapping
-    public ApiResponse<Bank> saveBank(@RequestBody Bank bank) {
-        return service.saveBank(bank);
-    }
+	@Operation(summary = "Save Bank")
+	@PostMapping
+	public ApiResponse<Bank> saveBank(@RequestBody Bank bank) {
+		return service.saveBank(bank);
+	}
 
-    @GetMapping("/{id}")
-    public ApiResponse<Bank> getBank(@PathVariable int id) {
-        return service.getBankById(id);
-    }
+	@Operation(summary = "Get Bank by ID")
+	@GetMapping("/{id}")
+	public ApiResponse<Bank> getBank(@PathVariable int id) {
+		return service.getBankById(id);
+	}
 
-    @DeleteMapping("/{id}")
-    public ApiResponse<String> deleteBank(@PathVariable int id) {
-        return service.deleteBank(id);
-    }
+	@Operation(summary = "Delete Bank by ID")
+	@DeleteMapping("/{id}")
+	public ApiResponse<String> deleteBank(@PathVariable int id) {
+		return service.deleteBank(id);
+	}
 
-    @PutMapping("/{id}")
-    public ApiResponse<Bank> updateBank(
-            @PathVariable int id,
-            @RequestBody Bank bank) {
-        return service.updateBank(id, bank);
-    }
+	@Operation(summary = "update Bank by ID")
+	@PutMapping("/{id}")
+	public ApiResponse<Bank> updateBank(@PathVariable int id, @RequestBody Bank bank) {
+		return service.updateBank(id, bank);
+	}
 }

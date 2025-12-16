@@ -1,26 +1,33 @@
 package com.BikeWale.BikeWale.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
 @Entity
+@Schema(description = "Bike details available in BikeWale")
 public class Bike {
 	@Id
+	@Schema(accessMode = Schema.AccessMode.READ_ONLY)
 	private int id;
+	@Schema(description = "Bike model name")
 	private String name;
+	@Schema(description = "On-road price")
 	private double cost;
+	@Schema(description = "Manufacturer brand")
 	private String brand;
+	@Schema(description = "Mileage in km/l")
 	private double milege;
+	@Schema(description = "Engine capacity in CC")
 	private double cc;
 	@ManyToOne(cascade = CascadeType.ALL)
-    private Agent agent;
+	private Agent agent;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Tax tax;
+	@OneToOne(cascade = CascadeType.ALL)
+	private Tax tax;
 
 	public int getId() {
 		return id;
@@ -91,5 +98,5 @@ public class Bike {
 	public void setTax(Tax tax) {
 		this.tax = tax;
 	}
-    
+
 }

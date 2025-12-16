@@ -1,7 +1,7 @@
 package com.BikeWale.BikeWale.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,20 +10,29 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
+@Schema(description = "User enquiry related to a bike")
 public class Enquiry {
 	@Id
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Schema(example = "5001", accessMode = Schema.AccessMode.READ_ONLY)
 	private int id;
+	@Schema(description = "Customer Name")
 	private String customername;
+	@Schema(description = "Mobile number")
 	private long phone;
+	@Schema(description = "User remarks on the bike")
 	private String remarks;
+	@Schema(description = "Date of Enquiry")
 	private String dateofenquiry;
+	@Schema(description = "Description of the vechicle")
 	private String description;
+	@Schema(description = "Status of the enquriy")
 	private String status;
+	@Schema(description = "User who raised the enquiry")
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private User_info user;
-
+	@Schema(description = "Bike for which enquiry is raised")
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "bike_id")
 	private Bike bike;
@@ -99,5 +108,5 @@ public class Enquiry {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
-    
+
 }

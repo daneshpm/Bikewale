@@ -1,17 +1,26 @@
 package com.BikeWale.BikeWale.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 @Entity
+@Schema(description = "Bank details used for bike loans and tax payments")
 public class Bank {
 	@Id
+	@Schema(description = "Unique Bank ID", accessMode = Schema.AccessMode.READ_ONLY)
 	private int id;
+	@Schema(description = "Bank name", requiredMode = Schema.RequiredMode.REQUIRED)
 	private String name;
+	@Schema(description = "Which state")
 	private String state;
+	@Schema(description = "Which district")
 	private String district;
+	@Schema(description = "Rate of interest")
 	private double roi;
+	@Schema(description = "Branch location")
 	private String branch;
+	@Schema(description = "IFSC code", example = "HDFC0001234")
 	private String ifsc;
 
 	public int getId() {
@@ -69,7 +78,5 @@ public class Bank {
 	public void setIfsc(String ifsc) {
 		this.ifsc = ifsc;
 	}
-
-	
 
 }
